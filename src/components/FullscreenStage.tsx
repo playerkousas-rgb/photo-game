@@ -34,7 +34,7 @@ export default function FullscreenStage({ open, title, onClose, children }: Prop
 
   const shellClass = useMemo(
     () =>
-      'fixed inset-0 z-50 bg-[#070a14] text-white ' +
+      'fixed inset-0 z-50 bg-[#02133e] text-white ' +
       (open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'),
     [open],
   )

@@ -1,4 +1,4 @@
-import { CheckCircle2, Lightbulb, Shuffle, SquareArrowOutUpRight } from 'lucide-react'
+import { CheckCircle2, Lightbulb, Shuffle, SquareArrowOutUpRight, Users, Timer, Trophy } from 'lucide-react'
 
 export default function HowTo() {
   return (
@@ -36,6 +36,32 @@ export default function HowTo() {
           </div>
           <div className="text-xs text-white/60">
             PNG 比較不會糊掉；如果要放投影片也可以選白底，視覺更乾淨。
+          </div>
+        </div>
+
+        {/* Multiplayer tips */}
+        <div className="rounded-xl border border-white/10 bg-black/20 p-3">
+          <div className="mb-1 flex items-center gap-2 text-xs font-semibold text-white/80">
+            <Users className="h-4 w-4 text-sky-300" /> 團體搶答
+          </div>
+          <div className="text-xs text-white/60">
+            加入各組名稱到計分板，公布答案後直接幫答對組別加分，即時排名！
+          </div>
+        </div>
+        <div className="rounded-xl border border-white/10 bg-black/20 p-3">
+          <div className="mb-1 flex items-center gap-2 text-xs font-semibold text-white/80">
+            <Timer className="h-4 w-4 text-amber-300" /> 限時挑戰
+          </div>
+          <div className="text-xs text-white/60">
+            使用回合計時器增加緊張感，適合大朋友或成人團康活動。
+          </div>
+        </div>
+        <div className="rounded-xl border border-white/10 bg-black/20 p-3">
+          <div className="mb-1 flex items-center gap-2 text-xs font-semibold text-white/80">
+            <Trophy className="h-4 w-4 text-amber-300" /> 投影模式
+          </div>
+          <div className="text-xs text-white/60">
+            按「投影/全螢幕顯示」把猜題畫面投到電視或投影幕，大家一起看。
           </div>
         </div>
       </div>
