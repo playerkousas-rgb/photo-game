@@ -6,9 +6,10 @@ type Props = {
   options: PixelateOptions
   revealSeed: number
   onSize?: (w: number, h: number) => void
+  variant?: 'card' | 'stage'
 }
 
-export default function PixelCanvas({ sourceUrl, options, revealSeed, onSize }: Props) {
+export default function PixelCanvas({ sourceUrl, options, revealSeed, onSize, variant = 'card' }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const imgRef = useRef<HTMLImageElement | null>(null)
 
@@ -37,6 +38,16 @@ export default function PixelCanvas({ sourceUrl, options, revealSeed, onSize }: 
     pixelateToCanvas(img, canvas, options)
   }, [options, revealSeed])
 
+  /* ==================== STAGE MODE (fullscreen, no chrome) ==================== */
+  if (variant === 'stage') {
+    return (
+      <div className="flex h-full w-full items-center justify-center overflow-hidden">
+        <canvas ref={canvasRef} className="max-h-full max-w-full object-contain" />
+      </div>
+    )
+  }
+
+  /* ==================== CARD MODE (default, with chrome) ==================== */
   return (
     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
       <div className="mb-3 flex items-center justify-between gap-3">

@@ -467,10 +467,10 @@ function App() {
 
           {/* Preview */}
           <div className="relative aspect-video w-full max-w-lg overflow-hidden rounded-2xl border border-white/10 bg-black/30">
-            {gameMode === 'pixel' && <PixelZoomPane sourceUrl={sourceUrl} options={options} revealSeed={revealSeed} />}
-            {gameMode === 'masked' && <MaskedRevealPane src={sourceUrl} />}
-            {gameMode === 'warp' && <WarpPane src={sourceUrl} />}
-            {gameMode === 'shuffle' && <ShuffleTilesPane src={sourceUrl} />}
+            {gameMode === 'pixel' && <PixelZoomPane sourceUrl={sourceUrl} options={options} revealSeed={revealSeed} variant='stage' />}
+            {gameMode === 'masked' && <MaskedRevealPane src={sourceUrl} variant='stage' />}
+            {gameMode === 'warp' && <WarpPane src={sourceUrl} variant='stage' />}
+            {gameMode === 'shuffle' && <ShuffleTilesPane src={sourceUrl} variant='stage' />}
             <div className="absolute inset-0 grid place-items-center bg-black/40 backdrop-blur-sm">
               <div className="text-center">
                 <div className="text-4xl font-black text-white/80">{MODE_LABELS[gameMode!]}</div>
@@ -519,10 +519,10 @@ function App() {
               <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black/20">
                 {!revealAnswer ? (
                   <>
-                    {gameMode === 'pixel' && <PixelCanvas sourceUrl={sourceUrl} options={options} revealSeed={revealSeed} />}
-                    {gameMode === 'masked' && <MaskedRevealPane src={sourceUrl} />}
-                    {gameMode === 'warp' && <WarpPane src={sourceUrl} />}
-                    {gameMode === 'shuffle' && <ShuffleTilesPane src={sourceUrl} />}
+                    {gameMode === 'pixel' && <PixelCanvas sourceUrl={sourceUrl} options={options} revealSeed={revealSeed} variant='stage' />}
+                    {gameMode === 'masked' && <MaskedRevealPane src={sourceUrl} variant='stage' />}
+                    {gameMode === 'warp' && <WarpPane src={sourceUrl} variant='stage' />}
+                    {gameMode === 'shuffle' && <ShuffleTilesPane src={sourceUrl} variant='stage' />}
                   </>
                 ) : (
                   <img src={sourceUrl ?? ''} alt="answer" className="max-h-full max-w-full object-contain" draggable={false} />
@@ -697,10 +697,10 @@ function App() {
           <div className="relative flex-1 overflow-hidden rounded-2xl border border-white/10 bg-black/20 p-2">
             {!revealAnswer ? (
               <>
-                {gameMode === 'pixel' && <PixelCanvas sourceUrl={sourceUrl} options={options} revealSeed={revealSeed} />}
-                {gameMode === 'masked' && <MaskedRevealPane src={sourceUrl} />}
-                {gameMode === 'warp' && <WarpPane src={sourceUrl} />}
-                {gameMode === 'shuffle' && <ShuffleTilesPane src={sourceUrl} />}
+                {gameMode === 'pixel' && <PixelCanvas sourceUrl={sourceUrl} options={options} revealSeed={revealSeed} variant='stage' />}
+                {gameMode === 'masked' && <MaskedRevealPane src={sourceUrl} variant='stage' />}
+                {gameMode === 'warp' && <WarpPane src={sourceUrl} variant='stage' />}
+                {gameMode === 'shuffle' && <ShuffleTilesPane src={sourceUrl} variant='stage' />}
               </>
             ) : (
               <img src={sourceUrl ?? ''} alt="answer" className="h-full w-full object-contain" draggable={false} />

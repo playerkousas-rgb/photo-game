@@ -8,6 +8,7 @@ type Props = {
   sourceUrl: string | null
   options: PixelateOptions
   revealSeed: number
+  variant?: 'card' | 'stage'
 }
 
 type Pt = { x: number; y: number }
@@ -16,7 +17,7 @@ function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n))
 }
 
-export default function PixelZoomPane({ sourceUrl, options, revealSeed }: Props) {
+export default function PixelZoomPane({ sourceUrl, options, revealSeed, variant = 'card' }: Props) {
   const wrapRef = useRef<HTMLDivElement | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const imgRef = useRef<HTMLImageElement | null>(null)
@@ -96,6 +97,43 @@ export default function PixelZoomPane({ sourceUrl, options, revealSeed }: Props)
     } as React.CSSProperties
   }, [options.grid, options.pixelSize, options.gridColor, options.gridAlpha])
 
+  /* ==================== STAGE MODE ==================== */
+  if (variant === 'stage') {
+    return (
+      <div
+        ref={wrapRef}
+        className="relative h-full w-full overflow-hidden"
+        onMouseDown={(e) => { if (!sourceUrl) return; startDrag(e.clientX, e.clientY) }}
+        onMouseMove={(e) => moveDrag(e.clientX, e.clientY)}
+        onMouseUp={endDrag}
+        onMouseLeave={endDrag}
+        onWheel={(e) => {
+          if (!sourceUrl) return
+          e.preventDefault()
+          const factor = e.deltaY < 0 ? 1.1 : 1 / 1.1
+          zoomAt(factor, e.clientX, e.clientY)
+        }}
+        style={{ touchAction: 'none', cursor: sourceUrl ? (dragging ? 'grabbing' : 'grab') : 'default' }}
+      >
+        {sourceUrl ? (
+          <>
+            <div
+              className="absolute left-1/2 top-1/2"
+              style={{ transform: `translate(-50%, -50%) translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}
+            >
+              <canvas ref={canvasRef} className="max-h-full max-w-full select-none" />
+            </div>
+            {gridOverlay ? <div className="pointer-events-none absolute inset-0" style={gridOverlay} /> : null}
+            <RevealOriginalOverlay src={sourceUrl} revealed={reveal} />
+          </>
+        ) : (
+          <div className="grid h-full place-items-center text-sm text-white/40">先上傳圖片</div>
+        )}
+      </div>
+    )
+  }
+
+  /* ==================== CARD MODE ==================== */
   return (
     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
       <div className="mb-3 flex items-center justify-between gap-3">
